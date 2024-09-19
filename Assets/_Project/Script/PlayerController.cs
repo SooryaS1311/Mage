@@ -37,9 +37,9 @@ public class PlayerController : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.LeftShift) && (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.LeftArrow)))
         {
-            characterController.Move(movementNormalized * (speed * 6) * Time.deltaTime);
             _animator.SetTrigger("run");
             _animator.ResetTrigger("walk");
+            characterController.Move(movementNormalized * (speed * 6) * Time.deltaTime);
             isRunning = true;
         }
         else if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.LeftArrow))
@@ -105,7 +105,8 @@ public class PlayerController : MonoBehaviour
         {
 
             yield return new WaitForSeconds(time);
-            Instantiate(_projectile_Prefab, _projectile_Spawner);
+            GameObject FireBall=Instantiate(_projectile_Prefab,_projectile_Spawner);
+            FireBall.transform.parent = null;
 
 
         }
